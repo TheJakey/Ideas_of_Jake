@@ -23,7 +23,7 @@ export default function SnackBarCustom({ alert }) {
     return(
         <Snackbar open={showSnackBar} autoHideDuration={1000} onClose={hideSnackBar}>
             <Alert onClose={hideSnackBar} severity="success">
-                This is a success message!
+                ICE will be here
             </Alert>
         </Snackbar>
     );
