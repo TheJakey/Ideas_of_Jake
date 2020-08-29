@@ -1,0 +1,54 @@
+import React, { useState } from 'react';
+import SnackBarCustom from './Notifications/SnackBarCustom';
+
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+
+
+export default function ButtonAppBar() {
+  const classes = useStyles();
+
+  const [showCool, setShowCool] = useState();
+
+  function chengeShowCoolState() {
+      let changeState = showCool;
+      changeState = !changeState;
+
+      setShowCool(changeState);
+  }
+
+  return (
+    <div className={classes.root}>
+      <AppBar>
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Ideas of Jake
+          </Typography>
+          <Button color="inherit" onClick={ () => chengeShowCoolState() }>Show me smthng cool</Button>
+        </Toolbar>
+      </AppBar>
+      <SnackBarCustom alert={showCool} />
+    </div>
+  );
+}
