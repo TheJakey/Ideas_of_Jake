@@ -1,10 +1,14 @@
 import React from 'react';
 import NavBar from './NavBar';
+import ApiCaller from './components/api-caller/ApiCaller'
+
 function App() {
   return (
-    <div style={{margin:0}}>
+    <div>
       <NavBar></NavBar>
-      <h1> tvoj tato </h1> 
+      <div style={{ marginTop: 80 }}>
+        <ApiCaller></ApiCaller>
+      </div>
     </div>
   );
 }
