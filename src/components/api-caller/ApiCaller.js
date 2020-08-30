@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(() => ({
     heading: {
-        textAlign: "center",
+        textAlign: "left",
     },
     bodyFields: {
         marginLeft: '10%',
@@ -36,9 +36,10 @@ export default function ApiCaller() {
     const [endpointAnswer, setEndpointAnswer] = useState("");
 
     function sendRequest() {
-        fetch(endpointURL, {
+        fetch("https://cors-anywhere.herokuapp.com/" + endpointURL, {
             "method": "GET",
             "headers": {
+                origin: ""
                 // "content-type": "application/json",
                 // "accept": "application/json"
             },
@@ -47,7 +48,7 @@ export default function ApiCaller() {
             //     notes: this.state.notes
             // })
             })
-            .then(response => response.json())
+            .then(response => response.text())
             .then(response => {
                 let responseString = JSON.stringify(response);
                 console.log(responseString);
@@ -64,10 +65,14 @@ export default function ApiCaller() {
         setErrorOnURL(false);
     }
 
+    function updateEndpointAnswerValue(userInputObject) {
+        setEndpointAnswer(userInputObject.target.value);
+    }
+
     return(
-        <div>
+        <div className={classes.bodyFields}>
             <h1 className={classes.heading}>API Caller</h1>
-            <div className={classes.bodyFields}>
+            <div>
                 <div className={classes.inputStyling}>
                     <TextField 
                         label="Endpoint URL"
@@ -98,6 +103,7 @@ export default function ApiCaller() {
                     variant="standard"
                     value={endpointAnswer}
                     rowsMax={20}
+                    onChange={ userInputObject => updateEndpointAnswerValue(userInputObject) }
                     />
             </div>
         </div>
