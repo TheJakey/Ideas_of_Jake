@@ -2,6 +2,9 @@ import React from 'react';
 import NavBar from './NavBar';
 import ApiCaller from './components/api-caller/ApiCaller'
 
+// styles
+import './App.css'
+
 function App() {
   return (
     <div>
